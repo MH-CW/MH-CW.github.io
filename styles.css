@@ -46,3 +46,11 @@ body {
 .image-container img {
     max-width: 100%;
 }
+
+.custom-width {
+    width: 550px; /* Adjust the width as needed */
+}
+
+.custom-width2 {
+    width: 590px; /* Adjust the width as needed */
+}
