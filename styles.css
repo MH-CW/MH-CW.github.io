@@ -52,6 +52,18 @@ body {
     width: 550px; /* Adjust the width as needed */
 }
 
-.custom-width2 {
-    width: 10%; /* Adjust the width as needed */
+.menu .btn2 {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #07302F;
+    width: 285px;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
