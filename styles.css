@@ -27,7 +27,7 @@ body {
     border: none;
     border-radius: 5px;
     background-color: #07302F;
-    width: 250px;
+    #width: 250px;
     color: #fff;
     font-size: 18px;
     text-decoration: none;
@@ -42,7 +42,7 @@ body {
     border: none;
     border-radius: 5px;
     background-color: #07302F;
-    width: 400px; /* Set the width to match other buttons */
+    #width: 400px; /* Set the width to match other buttons */
     color: #fff;
     font-size: 18px;
     text-decoration: none;
