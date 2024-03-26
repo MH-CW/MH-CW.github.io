@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('path/to/font.woff2') format('woff2'),
+         url('path/to/font.woff') format('woff');
+    /* Add additional font formats if needed */
+}
+
+body {
+    font-family: 'CustomFont', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #D4E8DC;
+}
+
+.menu {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.menu h2 {
+    color: #07302F;
+}
+
+.menu .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #07302F;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu .btn:hover {
+    background-color: #0056b3;
+}
+
+.image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.image-container img {
+    max-width: 100%;
+}
+
+.custom-width {
+    width: 850px; /* Adjust the width as needed */
+}

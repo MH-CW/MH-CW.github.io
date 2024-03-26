@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Menu</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        h2 {
+            font-size: 2em; /* Adjust the font size as needed */
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+	    vertical-align: bottom;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu">
+    <h2>Kaleidochrome Long & Durable(TM) - White Paint</h2>
+    <div class="image-container">
+        <img src="banner.jpg" alt="Background Image" style="width: 45%; height: auto;">
+    </div>
+
+    <div class="dropdown">
+        <button class="btn" style="background-color: orange; color: white" onclick="toggleDropdown()">Hazard Rating</button>
+        <div class="dropdown-content" id="dropdownContent">
+            <a href="SDS.pdf" class="btn" target="_blank">SDS</a>
+            <a href="mini.pdf" class="btn" target="_blank">Mini SDS</a>
+        </div>
+    </div>
+    <a href="EPD.pdf" class="btn" style="background-color: red; color: white" target="_blank">Environmental Product Declaration</a>
+    <a href="transport.pdf" class="btn" style="background-color: orange; color: white" target="_blank">Dangerous Goods</a>
+    <a href="HPD.pdf" class="btn" style="background-color: green; color: white" target="_blank">Health Product Declaration</a>
+    <a href="global.pdf" class="btn" style="background-color: red; color: white" target="_blank">Regulatory Burden</a>
+    <a href="risk_band.pdf" class="btn" style="background-color: green; color: white" target="_blank">Risk Band</a>
+    <a href="ESG.pdf" class="btn" style="background-color: grey; color: black" target="_blank">Governance</a>
+    <!-- Add more buttons as needed -->
+</div>
+
+<div class="image-container">
+    <a href="https://www.chemwatch.net" target="_blank">
+        <img src="../CW_logo.png" alt="Background Image" style="width: 45%; height: auto;">
+    </a>
+</div>
+
+<script>
+    function toggleDropdown() {
+        var dropdownContent = document.getElementById("dropdownContent");
+        dropdownContent.style.display === "block" ? dropdownContent.style.display = "none" : dropdownContent.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
