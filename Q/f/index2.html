@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Menu</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        h2 {
+            font-size: 2em; /* Adjust the font size as needed */
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+	    vertical-align: bottom;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 260px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 16px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu">
+    <h2>Fox Valley Traffic Paint Blue</h2>
+    <div class="image-container">
+        <img src="banner.jpg" alt="Background Image" style="width: 45%; height: auto;">
+    </div>
+
+
+    <a href="SDS.pdf" class="btn" target="_blank">SDS</a>
+    <a href="mini.pdf" class="btn" target="_blank">Mini SDS</a>
+    <a href="first_aid.pdf" class="btn" target="_blank">First Aid</a>
+    <a href="first_aid_2.pdf" class="btn" target="_blank">Advice to Doctor</a>
+    <a href="EPD.pdf" class="btn" target="_blank">Environmental Product Declaration</a>
+    <a href="fire_fighting.pdf" class="btn" target="_blank">Fire Fighting</a>
+    <a href="environmental.pdf" class="btn"  target="_blank">Environment</a>
+    <a href="global.pdf" class="btn"  target="_blank">Regulatory Burden</a>
+    <a href="china.pdf" class="btn"  target="_blank">China</a>
+    <a href="PPE.pdf" class="btn"  target="_blank">PPE</a>
+    <a href="SOP.pdf" class="btn"  target="_blank">Standard Operating Procedure</a>
+    <a href="spills_and_disposal.pdf" class="btn"  target="_blank">Spills and Disposal</a>
+    <a href="toxicological_report.pdf" class="btn"  target="_blank">Toxicology</a>
+    <!-- Add more buttons as needed -->
+</div>
+
+<div class="image-container">
+    <a href="https://www.chemwatch.net" target="_blank">
+        <img src="../CW_logo.png" alt="Background Image" style="width: 45%; height: auto;">
+    </a>
+</div>
+
+<script>
+    function toggleDropdown() {
+        var dropdownContent = document.getElementById("dropdownContent");
+        dropdownContent.style.display === "block" ? dropdownContent.style.display = "none" : dropdownContent.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
