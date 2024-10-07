@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple RDKit Moiety Search</title>
+  <script src="RDKit_minimal.js"></script> <!-- Load RDKit JS file -->
+
+  <style>
+    #moiety-heading {
+      display: none; /* Initially hide the heading */
+    }
+  </style>
+
+  <script>
+    window
+      .initRDKitModule() // Initialize the RDKit module
+      .then(function (RDKit) {
+        console.log("RDKit version: " + RDKit.version()); // Print RDKit version
+
+        const smilesList = [
+          "CNC",                        // No match
+          "CC(=O)Oc1ccccc1C(=O)O",
+          "c1ccncc1",                   // No match (Pyridine)
+          "c1ccc(cc1)-c2cnc(o2)-c3ccccc3",    // Match: Naphthalene
+          "CC(C)CC",
+          "CCC1=NC(=C(O1)C)C",
+          "Cc1nc(C)c(C)o1",
+          "CCO"                    // No match
+        ];
+
+        function hasSubstructure(mol, subMol) {
+          const match = mol.get_substruct_match(subMol);
+          if (typeof match === 'string' || Array.isArray(match)) {
+            return match.length > 1; // Return true if valid substructure match is found
+          }
+          return false; // No valid match
+        }
+
+        function searchMoiety(smilesList, moietySmiles) {
+          const moietyMol = RDKit.get_mol(moietySmiles); // Get the molecule from moiety SMILES
+
+          if (!moietyMol) {
+            console.error("Invalid moiety SMILES string.");
+            return [];
+          }
+
+          const results = smilesList.filter(smiles => {
+            const mol = RDKit.get_mol(smiles); // Generate a molecule from SMILES
+            if (mol) {
+              return hasSubstructure(mol, moietyMol); // Check for substructure
+            }
+            console.error("Invalid molecule for SMILES:", smiles);
+            return false;
+          });
+
+          return results;
+        }
+
+        // Function to handle search button click or Enter key press
+        function handleSearch() {
+          const moietySmiles = document.getElementById('moiety-input').value; // Get user input
+          const foundMolecules = searchMoiety(smilesList, moietySmiles);
+
+          // Display the found molecules
+          const resultContainer = document.getElementById('results');
+          const molContainer = document.getElementById('mol-container');
+          resultContainer.innerHTML = ""; // Clear previous results
+          molContainer.innerHTML = ""; // Clear previous SVGs
+
+          if (foundMolecules.length > 0) {
+            resultContainer.innerHTML = "<h3>Found Molecules with the specified moiety:</h3><ul>";
+            foundMolecules.forEach(molSmiles => {
+              resultContainer.innerHTML += `<li>${molSmiles}</li>`; // List found SMILES
+
+              // Generate the SVG for each matching molecule
+              const mol = RDKit.get_mol(molSmiles);
+              if (mol) {
+                const svg = mol.get_svg();
+                const svgContainer = document.createElement('div');
+                svgContainer.innerHTML = svg;
+                molContainer.appendChild(svgContainer); // Append the SVG to the container
+              }
+            });
+            resultContainer.innerHTML += "</ul>";
+          } else {
+            resultContainer.innerHTML = "<h3>No molecules found with the specified moiety.</h3>";
+          }
+
+          // Display the specified moiety as SVG
+          const moietyContainer = document.getElementById('moiety-container');
+          const moits = RDKit.get_mol(moietySmiles);
+          if (moits) {
+            const svg = moits.get_svg();
+            moietyContainer.innerHTML = svg; // Display the SVG in the container
+            document.getElementById('moiety-heading').style.display = 'block'; // Show the heading
+          } else {
+            moietyContainer.innerHTML = ""; // Clear if invalid input
+            document.getElementById('moiety-heading').style.display = 'none'; // Hide the heading
+          }
+        }
+
+        // Attach the search handler to both the button click and Enter key press
+        document.getElementById('search-button').addEventListener('click', handleSearch);
+        document.getElementById('moiety-input').addEventListener('keypress', function (event) {
+          if (event.key === 'Enter') {
+            handleSearch();
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Failed to load RDKit:", error); // Handle errors
+      });
+  </script>
+</head>
+<body>
+  <h1>Michael's Moiety Search</h1>
+
+  <!-- Input field and button for user input -->
+  <label for="moiety-input">Enter Moiety SMILES:</label>
+  <input type="text" id="moiety-input" placeholder="e.g., O" />
+  <button id="search-button">Search</button>
+
+  <!-- Hidden heading for searched moiety -->
+  <h3 id="moiety-heading">Searched Moiety</h3>
+  <div id="moiety-container"></div> <!-- Container for the moiety SVG -->
+  
+  <!-- Display the search results -->
+  <div id="results"></div> <!-- Container for search results -->
+  
+  <!-- Optionally display all found molecules as SVGs -->
+  <div id="mol-container"></div> <!-- Container for all molecule SVGs -->
+
+</body>
+</html>
