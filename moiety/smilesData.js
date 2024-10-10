@@ -7,6 +7,7 @@ const smilesList = [
     "C(C1C(C(C(C(O1)O)O)O)O)O",
     "CCC1CC2C3CCC4=CC(=O)CCC4C3CCC2(C1O)C",
     "CCCCC(CC(C)C)N",
+    "c1ccc(cc1)-c2cnc(o2)-c3ccccc3",
     "C1=NNC2C1C(=O)NC(=N2)N",
     "C1=CC=C(C(=C1)CSCC(C(=O)NCC(=O)O)NC(=O)CCC(C(=O)O)N)Cl",
     "CSCOC1=CC=CC=C1",
